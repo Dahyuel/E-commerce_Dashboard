@@ -85,7 +85,7 @@ const SocialMedia: React.FC = () => {
           <select
             value={selectedPlatform}
             onChange={(e) => setSelectedPlatform(e.target.value as any)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all hover:border-blue-300"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 hover:border-blue-300"
           >
             <option value="all">All Platforms</option>
             <option value="facebook">Facebook</option>
@@ -99,7 +99,7 @@ const SocialMedia: React.FC = () => {
               <button
                 key={period}
                 onClick={() => setTimeframe(period)}
-                className={`px-4 py-2 rounded-md text-sm font-medium capitalize transition-all hover:shadow-sm ${
+                className={`px-4 py-2 rounded-md text-sm font-medium capitalize transition-all duration-200 hover:shadow-sm ${
                   timeframe === period
                     ? 'bg-blue-600 text-white transform hover:scale-105'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200'
@@ -114,7 +114,7 @@ const SocialMedia: React.FC = () => {
 
       {/* Overview Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md hover:scale-105">
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md hover:scale-105">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Total Followers</p>
@@ -126,7 +126,7 @@ const SocialMedia: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md hover:scale-105">
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md hover:scale-105">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Total Likes ({timeframe})</p>
@@ -138,7 +138,7 @@ const SocialMedia: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md hover:scale-105">
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md hover:scale-105">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Total Shares</p>
@@ -152,7 +152,7 @@ const SocialMedia: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md hover:scale-105">
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md hover:scale-105">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Total Comments</p>
@@ -169,11 +169,11 @@ const SocialMedia: React.FC = () => {
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
         {/* Platform Performance */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md">
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md">
           <h3 className="text-lg font-semibold text-gray-900 mb-6">Platform Performance</h3>
           <div className="space-y-6">
             {Object.entries(currentData).map(([platform, data]) => (
-              <div key={platform} className="p-4 bg-gray-50 rounded-lg transition-all hover:bg-gray-100 hover:shadow-sm">
+              <div key={platform} className="p-4 bg-gray-50 rounded-lg transition-all duration-200 hover:bg-gray-100 hover:shadow-sm">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
                     {getPlatformIcon(platform)}
@@ -205,24 +205,24 @@ const SocialMedia: React.FC = () => {
         </div>
 
         {/* Engagement Trends */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md">
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md">
           <h3 className="text-lg font-semibold text-gray-900 mb-6">Engagement Trends</h3>
           <div className="h-64 flex items-end justify-between gap-4">
             {engagementTrends.map((item, index) => (
               <div key={index} className="flex-1 flex flex-col items-center gap-2">
                 <div className="w-full flex flex-col gap-1">
                   <div
-                    className="w-full bg-gradient-to-t from-blue-600 to-blue-400 rounded-t-lg transition-all hover:from-blue-700 hover:to-blue-500"
+                    className="w-full bg-gradient-to-t from-blue-600 to-blue-400 rounded-t-lg transition-all duration-200 hover:from-blue-700 hover:to-blue-500"
                     style={{ height: `${(item.facebook / 1500) * 100}%`, minHeight: '15px' }}
                     title={`Facebook: ${item.facebook}`}
                   ></div>
                   <div
-                    className="w-full bg-gradient-to-t from-pink-500 to-pink-400 rounded-t-lg transition-all hover:from-pink-600 hover:to-pink-500"
+                    className="w-full bg-gradient-to-t from-pink-500 to-pink-400 rounded-t-lg transition-all duration-200 hover:from-pink-600 hover:to-pink-500"
                     style={{ height: `${(item.instagram / 2500) * 100}%`, minHeight: '15px' }}
                     title={`Instagram: ${item.instagram}`}
                   ></div>
                   <div
-                    className="w-full bg-gradient-to-t from-gray-800 to-gray-600 rounded-t-lg transition-all hover:from-gray-900 hover:to-gray-700"
+                    className="w-full bg-gradient-to-t from-gray-800 to-gray-600 rounded-t-lg transition-all duration-200 hover:from-gray-900 hover:to-gray-700"
                     style={{ height: `${(item.tiktok / 3500) * 100}%`, minHeight: '15px' }}
                     title={`TikTok: ${item.tiktok}`}
                   ></div>
@@ -249,11 +249,11 @@ const SocialMedia: React.FC = () => {
       </div>
 
       {/* Top Performing Posts */}
-      <div className="mt-6 bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md">
+      <div className="mt-6 bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md">
         <h3 className="text-lg font-semibold text-gray-900 mb-6">Top Performing Posts</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {topPosts.map((post) => (
-            <div key={post.id} className="p-4 bg-gray-50 rounded-lg transition-all hover:bg-gray-100 hover:shadow-sm">
+            <div key={post.id} className="p-4 bg-gray-50 rounded-lg transition-all duration-200 hover:bg-gray-100 hover:shadow-sm">
               <div className="flex items-center gap-2 mb-3">
                 {getPlatformIcon(post.platform)}
                 <span className="font-medium text-gray-900">{post.platform}</span>

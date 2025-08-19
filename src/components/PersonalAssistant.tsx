@@ -66,7 +66,7 @@ const PersonalAssistant: React.FC = () => {
 
   return (
     <div className="p-6 h-full">
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 h-full flex flex-col">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 h-full flex flex-col transition-all duration-200 hover:shadow-md">
         <div className="bg-white border-b border-gray-200 p-4">
           <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
             <Bot className="text-blue-600" size={24} />
@@ -84,7 +84,7 @@ const PersonalAssistant: React.FC = () => {
               <div className={`flex items-start gap-2 max-w-xs lg:max-w-md ${
                 message.sender === 'user' ? 'flex-row-reverse' : 'flex-row'
               }`}>
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all hover:scale-105 ${
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-105 ${
                   message.sender === 'user' ? 'bg-blue-600' : 'bg-gray-200'
                 }`}>
                   {message.sender === 'user' ? (
@@ -93,7 +93,7 @@ const PersonalAssistant: React.FC = () => {
                     <Bot size={16} className="text-gray-600" />
                   )}
                 </div>
-                <div className={`rounded-lg p-3 transition-all hover:shadow-md ${
+                <div className={`rounded-lg p-3 transition-all duration-200 hover:shadow-md ${
                   message.sender === 'user'
                     ? 'bg-blue-600 text-white'
                     : 'bg-gray-100 text-gray-900'
@@ -118,12 +118,12 @@ const PersonalAssistant: React.FC = () => {
               onChange={(e) => setInputMessage(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
               placeholder="Type your message..."
-              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all hover:border-blue-300"
+              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 hover:border-blue-300"
             />
             <button
               onClick={handleSendMessage}
               disabled={!inputMessage.trim()}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:shadow-md transform hover:scale-105"
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:shadow-md transform hover:scale-105"
             >
               <Send size={16} />
             </button>

@@ -42,7 +42,7 @@ const WebsitePerformance: React.FC = () => {
             <button
               key={period}
               onClick={() => setTimeframe(period)}
-              className={`px-4 py-2 rounded-md text-sm font-medium capitalize transition-all hover:shadow-sm ${
+              className={`px-4 py-2 rounded-md text-sm font-medium capitalize transition-all duration-200 hover:shadow-sm ${
                 timeframe === period
                   ? 'bg-blue-600 text-white transform hover:scale-105'
                   : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200'
@@ -56,7 +56,7 @@ const WebsitePerformance: React.FC = () => {
 
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md hover:scale-105">
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md hover:scale-105">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Site Visits ({timeframe})</p>
@@ -68,7 +68,7 @@ const WebsitePerformance: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md hover:scale-105">
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md hover:scale-105">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Added to Cart</p>
@@ -80,7 +80,7 @@ const WebsitePerformance: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md hover:scale-105">
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md hover:scale-105">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Completed Purchases</p>
@@ -92,7 +92,7 @@ const WebsitePerformance: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-red-50 p-6 rounded-xl shadow-sm border border-red-100 transition-all hover:shadow-md hover:scale-105">
+        <div className="bg-red-50 p-6 rounded-xl shadow-sm border border-red-100 transition-all duration-200 hover:shadow-md hover:scale-105">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-red-600">Cart Abandonment</p>
@@ -107,7 +107,7 @@ const WebsitePerformance: React.FC = () => {
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
         {/* Conversion Funnel */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md">
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md">
           <h3 className="text-lg font-semibold text-gray-900 mb-6">Conversion Funnel</h3>
           <div className="space-y-4">
             {funnelData.map((stage, index) => (
@@ -121,7 +121,7 @@ const WebsitePerformance: React.FC = () => {
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-3">
                   <div 
-                    className={`${stage.color} h-3 rounded-full transition-all hover:shadow-md`}
+                    className={`${stage.color} h-3 rounded-full transition-all duration-200 hover:shadow-md`}
                     style={{ width: `${stage.percentage}%` }}
                   ></div>
                 </div>
@@ -136,24 +136,24 @@ const WebsitePerformance: React.FC = () => {
         </div>
 
         {/* Performance Trends */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md">
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md">
           <h3 className="text-lg font-semibold text-gray-900 mb-6">Performance Trends</h3>
           <div className="h-64 flex items-end justify-between gap-4">
             {trendData.map((item, index) => (
               <div key={index} className="flex-1 flex flex-col items-center gap-2">
                 <div className="w-full flex flex-col gap-1">
                   <div
-                    className="w-full bg-gradient-to-t from-blue-600 to-blue-400 rounded-t-lg transition-all hover:from-blue-700 hover:to-blue-500"
+                    className="w-full bg-gradient-to-t from-blue-600 to-blue-400 rounded-t-lg transition-all duration-200 hover:from-blue-700 hover:to-blue-500"
                     style={{ height: `${(item.visits / 10000) * 100}%`, minHeight: '20px' }}
                     title={`Visits: ${item.visits}`}
                   ></div>
                   <div
-                    className="w-full bg-gradient-to-t from-yellow-500 to-yellow-400 rounded-t-lg transition-all hover:from-yellow-600 hover:to-yellow-500"
+                    className="w-full bg-gradient-to-t from-yellow-500 to-yellow-400 rounded-t-lg transition-all duration-200 hover:from-yellow-600 hover:to-yellow-500"
                     style={{ height: `${(item.cart / 1500) * 60}%`, minHeight: '15px' }}
                     title={`Cart: ${item.cart}`}
                   ></div>
                   <div
-                    className="w-full bg-gradient-to-t from-green-500 to-green-400 rounded-t-lg transition-all hover:from-green-600 hover:to-green-500"
+                    className="w-full bg-gradient-to-t from-green-500 to-green-400 rounded-t-lg transition-all duration-200 hover:from-green-600 hover:to-green-500"
                     style={{ height: `${(item.purchases / 400) * 40}%`, minHeight: '10px' }}
                     title={`Purchases: ${item.purchases}`}
                   ></div>

@@ -6,6 +6,7 @@ interface Product {
   name: string;
   sku: string;
   image: string;
+  price: number;
   totalStock: number;
   totalSold: number;
   lowStockThreshold: number;
@@ -38,9 +39,10 @@ const Inventory: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([
     {
       id: '1',
-      name: 'Wireless Headphones Pro',
-      sku: 'WHP-001',
-      image: '/images/headphones.jpg',
+      name: 'The Meadow Whisper Top',
+      sku: 'MWT-001',
+      image: '/The Meadow Whisper Top.png',
+      price: 910.00,
       totalStock: 145,
       totalSold: 156,
       lowStockThreshold: 20,
@@ -52,19 +54,20 @@ const Inventory: React.FC = () => {
       },
       costs: {
         components: [
-          { name: 'Speaker Drivers', cost: 15.50 },
-          { name: 'Plastic Housing', cost: 8.20 },
-          { name: 'Headband Padding', cost: 5.30 },
-          { name: 'Cable & Connectors', cost: 4.80 }
+          { name: 'Fabric', cost: 45.50 },
+          { name: 'Thread', cost: 8.20 },
+          { name: 'Buttons', cost: 5.30 },
+          { name: 'Labor', cost: 25.00 }
         ],
-        totalCost: 33.80
+        totalCost: 84.00
       }
     },
     {
       id: '2',
-      name: 'Smart Fitness Tracker',
-      sku: 'SFT-002',
-      image: '/images/fitness-tracker.jpg',
+      name: 'The Berry Whisper Top',
+      sku: 'BWT-002',
+      image: '/The Berry Whisper Top.png',
+      price: 910.00,
       totalStock: 12,
       totalSold: 234,
       lowStockThreshold: 15,
@@ -76,19 +79,20 @@ const Inventory: React.FC = () => {
       },
       costs: {
         components: [
-          { name: 'Display Screen', cost: 22.00 },
-          { name: 'Heart Rate Sensor', cost: 18.50 },
-          { name: 'Silicone Band', cost: 6.20 },
-          { name: 'Battery & Circuits', cost: 12.30 }
+          { name: 'Fabric', cost: 48.00 },
+          { name: 'Thread', cost: 8.50 },
+          { name: 'Buttons', cost: 6.20 },
+          { name: 'Labor', cost: 25.00 }
         ],
-        totalCost: 59.00
+        totalCost: 87.70
       }
     },
     {
       id: '3',
-      name: 'Bluetooth Speaker Mini',
-      sku: 'BSM-003',
-      image: '/images/speaker.jpg',
+      name: 'Long Sleve Beige Top',
+      sku: 'LSB-003',
+      image: '/Long Sleve Beige Top.jpg',
+      price: 390.00,
       totalStock: 67,
       totalSold: 189,
       lowStockThreshold: 25,
@@ -100,19 +104,20 @@ const Inventory: React.FC = () => {
       },
       costs: {
         components: [
-          { name: 'Speaker Unit', cost: 12.80 },
-          { name: 'Bluetooth Module', cost: 8.90 },
-          { name: 'Battery Pack', cost: 7.40 },
-          { name: 'Outer Casing', cost: 5.60 }
+          { name: 'Fabric', cost: 22.80 },
+          { name: 'Thread', cost: 4.90 },
+          { name: 'Buttons', cost: 3.40 },
+          { name: 'Labor', cost: 15.00 }
         ],
-        totalCost: 34.70
+        totalCost: 46.10
       }
     },
     {
       id: '4',
-      name: 'Wireless Charging Pad',
-      sku: 'WCP-004',
-      image: '/images/charger.jpg',
+      name: 'Pink Cloud Chemise',
+      sku: 'PCC-004',
+      image: '/Pink Cloud Chemise.jpg',
+      price: 620.00,
       totalStock: 234,
       totalSold: 98,
       lowStockThreshold: 30,
@@ -124,12 +129,12 @@ const Inventory: React.FC = () => {
       },
       costs: {
         components: [
-          { name: 'Charging Coil', cost: 9.20 },
-          { name: 'Circuit Board', cost: 6.80 },
-          { name: 'LED Indicators', cost: 2.30 },
-          { name: 'Non-slip Base', cost: 3.40 }
+          { name: 'Fabric', cost: 35.20 },
+          { name: 'Thread', cost: 6.80 },
+          { name: 'Lace', cost: 12.30 },
+          { name: 'Labor', cost: 18.00 }
         ],
-        totalCost: 21.70
+        totalCost: 72.30
       }
     }
   ]);
@@ -199,7 +204,7 @@ const Inventory: React.FC = () => {
       <div className="bg-white rounded-xl shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-auto">
         <div className="p-6 border-b border-gray-200 flex items-center justify-between">
           <h2 className="text-xl font-bold text-gray-900">{product.name}</h2>
-          <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+          <button onClick={onClose} className="text-gray-500 hover:text-gray-700 transition-all duration-200">
             <X size={24} />
           </button>
         </div>
@@ -210,7 +215,7 @@ const Inventory: React.FC = () => {
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Stock Distribution</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {Object.entries(product.channels).map(([channel, data]) => (
-                <div key={channel} className="p-4 bg-gray-50 rounded-lg">
+                <div key={channel} className="p-4 bg-gray-50 rounded-lg transition-all duration-200 hover:bg-gray-100">
                   <h4 className="font-medium text-gray-900 capitalize mb-3">{channel === 'showroom' ? 'GenZ Showroom' : 'Website'}</h4>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
@@ -218,14 +223,14 @@ const Inventory: React.FC = () => {
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => updateStock(product.id, -1, channel as 'website' | 'showroom')}
-                          className="w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600"
+                          className="w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-all duration-200 transform hover:scale-105"
                         >
                           <Minus size={12} />
                         </button>
                         <span className="font-medium w-8 text-center">{data.inStock}</span>
                         <button
                           onClick={() => updateStock(product.id, 1, channel as 'website' | 'showroom')}
-                          className="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-green-600"
+                          className="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-green-600 transition-all duration-200 transform hover:scale-105"
                         >
                           <Plus size={12} />
                         </button>
@@ -246,14 +251,14 @@ const Inventory: React.FC = () => {
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Cost Components</h3>
             <div className="space-y-2">
               {product.costs.components.map((component, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg transition-all duration-200 hover:bg-gray-100">
                   <span className="text-sm text-gray-700">{component.name}</span>
-                  <span className="font-medium text-gray-900">${component.cost.toFixed(2)}</span>
+                  <span className="font-medium text-gray-900">LE {component.cost.toFixed(2)}</span>
                 </div>
               ))}
               <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg border-t border-blue-200">
                 <span className="font-semibold text-blue-900">Total Cost per Unit</span>
-                <span className="font-bold text-blue-900">${product.costs.totalCost.toFixed(2)}</span>
+                <span className="font-bold text-blue-900">LE {product.costs.totalCost.toFixed(2)}</span>
               </div>
             </div>
           </div>
@@ -292,7 +297,7 @@ const Inventory: React.FC = () => {
       <div className="bg-white rounded-xl shadow-xl max-w-md w-full mx-4">
         <div className="p-6 border-b border-gray-200 flex items-center justify-between">
           <h2 className="text-xl font-bold text-gray-900">Add Business Cost</h2>
-          <button onClick={() => setShowCostModal(false)} className="text-gray-500 hover:text-gray-700">
+          <button onClick={() => setShowCostModal(false)} className="text-gray-500 hover:text-gray-700 transition-all duration-200">
             <X size={24} />
           </button>
         </div>
@@ -303,7 +308,7 @@ const Inventory: React.FC = () => {
             <select
               value={newCost.category}
               onChange={(e) => setNewCost({ ...newCost, category: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
             >
               <option value="">Select category</option>
               <option value="Marketing">Marketing</option>
@@ -322,18 +327,18 @@ const Inventory: React.FC = () => {
               value={newCost.description}
               onChange={(e) => setNewCost({ ...newCost, description: e.target.value })}
               placeholder="e.g., Facebook Ads Campaign"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
             />
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Amount</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Amount (LE)</label>
             <input
               type="number"
               value={newCost.amount}
               onChange={(e) => setNewCost({ ...newCost, amount: Number(e.target.value) })}
               placeholder="0.00"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
             />
           </div>
           
@@ -342,7 +347,7 @@ const Inventory: React.FC = () => {
             <select
               value={newCost.frequency}
               onChange={(e) => setNewCost({ ...newCost, frequency: e.target.value as any })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
             >
               <option value="monthly">Monthly</option>
               <option value="yearly">Yearly</option>
@@ -352,7 +357,7 @@ const Inventory: React.FC = () => {
           
           <button
             onClick={addBusinessCost}
-            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-all"
+            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-all duration-200 transform hover:scale-105"
           >
             Add Cost
           </button>
@@ -372,7 +377,7 @@ const Inventory: React.FC = () => {
         <div className="flex gap-3">
           <button
             onClick={() => setShowCostModal(true)}
-            className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-all hover:shadow-md"
+            className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-all duration-200 hover:shadow-md transform hover:scale-105"
           >
             <DollarSign size={16} />
             Add Business Cost
@@ -382,7 +387,7 @@ const Inventory: React.FC = () => {
 
       {/* Alert Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-red-50 border border-red-200 p-4 rounded-xl">
+        <div className="bg-red-50 border border-red-200 p-4 rounded-xl transition-all duration-200 hover:shadow-md">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
               <AlertTriangle className="text-red-600" size={20} />
@@ -394,7 +399,7 @@ const Inventory: React.FC = () => {
           </div>
         </div>
         
-        <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-xl">
+        <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-xl transition-all duration-200 hover:shadow-md">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
               <TrendingDown className="text-yellow-600" size={20} />
@@ -406,7 +411,7 @@ const Inventory: React.FC = () => {
           </div>
         </div>
         
-        <div className="bg-blue-50 border border-blue-200 p-4 rounded-xl">
+        <div className="bg-blue-50 border border-blue-200 p-4 rounded-xl transition-all duration-200 hover:shadow-md">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
               <Package className="text-blue-600" size={20} />
@@ -420,7 +425,7 @@ const Inventory: React.FC = () => {
       </div>
 
       {/* Search Bar */}
-      <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-6">
+      <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-6 transition-all duration-200 hover:shadow-md">
         <div className="relative">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <Search className="h-5 w-5 text-gray-400" />
@@ -430,19 +435,20 @@ const Inventory: React.FC = () => {
             placeholder="Search products by name or SKU..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
           />
         </div>
       </div>
 
       {/* Product Table */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
                 <th className="text-left py-3 px-6 font-medium text-gray-900">Product</th>
                 <th className="text-left py-3 px-6 font-medium text-gray-900">SKU</th>
+                <th className="text-center py-3 px-6 font-medium text-gray-900">Price</th>
                 <th className="text-center py-3 px-6 font-medium text-gray-900">Stock</th>
                 <th className="text-center py-3 px-6 font-medium text-gray-900">Sold</th>
                 <th className="text-center py-3 px-6 font-medium text-gray-900">Velocity</th>
@@ -457,7 +463,7 @@ const Inventory: React.FC = () => {
                 return (
                   <tr 
                     key={product.id} 
-                    className={`border-b border-gray-100 hover:bg-gray-50 transition-all cursor-pointer ${
+                    className={`border-b border-gray-100 hover:bg-gray-50 transition-all duration-200 cursor-pointer ${
                       isLowStock ? 'bg-red-50' : isAging ? 'bg-yellow-50' : ''
                     }`}
                     onClick={() => setSelectedProduct(product)}
@@ -487,13 +493,16 @@ const Inventory: React.FC = () => {
                       <span className="font-mono text-sm text-gray-700">{product.sku}</span>
                     </td>
                     <td className="py-4 px-6 text-center">
+                      <span className="font-medium text-gray-900">LE {product.price.toFixed(2)}</span>
+                    </td>
+                    <td className="py-4 px-6 text-center">
                       <div className="flex items-center justify-center gap-2">
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
                             updateStock(product.id, -1);
                           }}
-                          className="w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-all"
+                          className="w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-all duration-200 transform hover:scale-105"
                         >
                           <Minus size={12} />
                         </button>
@@ -507,7 +516,7 @@ const Inventory: React.FC = () => {
                             e.stopPropagation();
                             updateStock(product.id, 1);
                           }}
-                          className="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-green-600 transition-all"
+                          className="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-green-600 transition-all duration-200 transform hover:scale-105"
                         >
                           <Plus size={12} />
                         </button>
@@ -535,7 +544,7 @@ const Inventory: React.FC = () => {
                           e.stopPropagation();
                           setSelectedProduct(product);
                         }}
-                        className="bg-blue-600 text-white px-3 py-1 rounded-lg hover:bg-blue-700 transition-all text-sm"
+                        className="bg-blue-600 text-white px-3 py-1 rounded-lg hover:bg-blue-700 transition-all duration-200 text-sm transform hover:scale-105"
                       >
                         Details
                       </button>
@@ -549,20 +558,20 @@ const Inventory: React.FC = () => {
       </div>
 
       {/* Business Costs Section */}
-      <div className="mt-6 bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md">
+      <div className="mt-6 bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md">
         <h3 className="text-lg font-semibold text-gray-900 mb-6">Business Costs</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
           {businessCosts.map((cost) => (
-            <div key={cost.id} className="p-4 bg-gray-50 rounded-lg transition-all hover:bg-gray-100">
+            <div key={cost.id} className="p-4 bg-gray-50 rounded-lg transition-all duration-200 hover:bg-gray-100">
               <div className="flex items-center justify-between mb-2">
                 <span className="font-medium text-gray-900">{cost.category}</span>
-                <button className="text-red-600 hover:text-red-700 transition-all">
+                <button className="text-red-600 hover:text-red-700 transition-all duration-200">
                   <X size={16} />
                 </button>
               </div>
               <p className="text-sm text-gray-600 mb-2">{cost.description}</p>
               <div className="flex items-center justify-between">
-                <span className="font-bold text-gray-900">${cost.amount.toLocaleString()}</span>
+                <span className="font-bold text-gray-900">LE {cost.amount.toLocaleString()}</span>
                 <span className="text-xs text-gray-500 capitalize">{cost.frequency}</span>
               </div>
             </div>
@@ -573,7 +582,7 @@ const Inventory: React.FC = () => {
           <div className="flex items-center justify-between">
             <span className="font-semibold text-blue-900">Total Monthly Costs</span>
             <span className="font-bold text-blue-900">
-              ${businessCosts.reduce((sum, cost) => {
+              LE {businessCosts.reduce((sum, cost) => {
                 const monthlyAmount = cost.frequency === 'yearly' ? cost.amount / 12 : 
                                    cost.frequency === 'one-time' ? 0 : cost.amount;
                 return sum + monthlyAmount;
@@ -584,7 +593,7 @@ const Inventory: React.FC = () => {
       </div>
 
       {/* Restock Recommendations */}
-      <div className="mt-6 bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md">
+      <div className="mt-6 bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md">
         <h3 className="text-lg font-semibold text-gray-900 mb-6">Restock Recommendations</h3>
         <div className="space-y-3">
           {products.map((product) => {
@@ -592,7 +601,7 @@ const Inventory: React.FC = () => {
             if (rec.amount === 0) return null;
             
             return (
-              <div key={product.id} className={`p-4 rounded-lg border ${
+              <div key={product.id} className={`p-4 rounded-lg border transition-all duration-200 hover:shadow-sm ${
                 rec.urgency === 'high' ? 'bg-red-50 border-red-200' :
                 rec.urgency === 'medium' ? 'bg-yellow-50 border-yellow-200' :
                 'bg-blue-50 border-blue-200'

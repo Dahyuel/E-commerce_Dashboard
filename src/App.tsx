@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import TopBar from './components/TopBar';
 import Dashboard from './components/Dashboard';
-import ChatBot from './components/ChatBot';
+import PersonalAssistant from './components/PersonalAssistant';
+import AdCampaigns from './components/AdCampaigns';
+import WebsitePerformance from './components/WebsitePerformance';
+import SocialMedia from './components/SocialMedia';
 import Inventory from './components/Inventory';
 import Sales from './components/Sales';
 import Tickets from './components/Tickets';
@@ -15,8 +18,14 @@ function App() {
     switch (activeTab) {
       case 'dashboard':
         return <Dashboard />;
-      case 'chatbot':
-        return <ChatBot />;
+      case 'assistant':
+        return <PersonalAssistant />;
+      case 'ads':
+        return <AdCampaigns />;
+      case 'website':
+        return <WebsitePerformance />;
+      case 'social':
+        return <SocialMedia />;
       case 'inventory':
         return <Inventory />;
       case 'sales':

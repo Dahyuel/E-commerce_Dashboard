@@ -42,6 +42,12 @@ const Dashboard: React.FC = () => {
     { name: 'Presentation', percentage: 40, color: 'bg-gray-400' }
   ];
 
+  const quickActions = [
+    { title: 'Add New Product', action: 'inventory', color: 'bg-green-600' },
+    { title: 'View Orders', action: 'sales', color: 'bg-blue-600' },
+    { title: 'Check Tickets', action: 'tickets', color: 'bg-yellow-600' },
+    { title: 'Update Stock', action: 'inventory', color: 'bg-purple-600' }
+  ];
 
   return (
     <div className="p-6">
@@ -53,7 +59,7 @@ const Dashboard: React.FC = () => {
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {stats.map((stat, index) => (
-              <div key={index} className={`${stat.bgColor} p-6 rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md hover:scale-105`}>
+              <div key={index} className={`${stat.bgColor} p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md hover:scale-105`}>
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className={`text-sm font-medium ${stat.textColor} opacity-70`}>{stat.title}</h3>
@@ -69,13 +75,13 @@ const Dashboard: React.FC = () => {
           </div>
 
           {/* Chart */}
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md">
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Sales Overview</h3>
             <div className="h-64 flex items-end justify-between gap-2">
               {chartData.map((item, index) => (
                 <div key={index} className="flex-1 flex flex-col items-center">
                   <div
-                    className="w-full bg-gradient-to-t from-blue-600 to-blue-400 rounded-t-lg transition-all hover:from-blue-700 hover:to-blue-500"
+                    className="w-full bg-gradient-to-t from-blue-600 to-blue-400 rounded-t-lg transition-all duration-200 hover:from-blue-700 hover:to-blue-500 hover:scale-105"
                     style={{ height: `${(item.value / 60) * 100}%`, minHeight: '20px' }}
                   ></div>
                   <span className="text-xs text-gray-600 mt-2">{item.day}</span>
@@ -84,13 +90,28 @@ const Dashboard: React.FC = () => {
             </div>
           </div>
 
+          {/* Quick Actions */}
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {quickActions.map((action, index) => (
+                <button
+                  key={index}
+                  className={`${action.color} text-white p-4 rounded-lg font-medium transition-all duration-200 hover:shadow-lg transform hover:scale-105`}
+                >
+                  {action.title}
+                </button>
+              ))}
+            </div>
+          </div>
+
           {/* Calendar */}
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md">
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-gray-900">January 2025</h3>
               <div className="flex gap-2">
-                <button className="p-2 hover:bg-gray-100 rounded-lg transition-all hover:scale-105">←</button>
-                <button className="p-2 hover:bg-gray-100 rounded-lg transition-all hover:scale-105">→</button>
+                <button className="p-2 hover:bg-gray-100 rounded-lg transition-all duration-200 hover:scale-105">←</button>
+                <button className="p-2 hover:bg-gray-100 rounded-lg transition-all duration-200 hover:scale-105">→</button>
               </div>
             </div>
             <div className="grid grid-cols-7 gap-2">
@@ -102,7 +123,7 @@ const Dashboard: React.FC = () => {
               {[5, 6, 7, 8, 9, 10, 11].map((date) => (
                 <button
                   key={date}
-                  className={`p-2 text-sm rounded-lg hover:bg-blue-50 transition-all hover:scale-105 ${
+                  className={`p-2 text-sm rounded-lg hover:bg-blue-50 transition-all duration-200 hover:scale-105 ${
                     date === 7 ? 'bg-blue-600 text-white' : 'text-gray-700 hover:text-blue-600'
                   }`}
                 >
@@ -116,7 +137,7 @@ const Dashboard: React.FC = () => {
         {/* Right Sidebar */}
         <div className="space-y-6">
           {/* Top Product Sale */}
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md">
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Top Product Sale</h3>
             <div className="flex justify-center mb-4">
               <div className="relative w-24 h-24">
@@ -140,33 +161,12 @@ const Dashboard: React.FC = () => {
             </div>
             <div className="space-y-3">
               {topProducts.map((product, index) => (
-                <div key={index} className="flex items-center justify-between">
+                <div key={index} className="flex items-center justify-between transition-all duration-200 hover:bg-gray-50 p-2 rounded-lg">
                   <div className="flex items-center gap-2">
                     <div className={`w-3 h-3 ${product.color} rounded-full`}></div>
                     <span className="text-sm text-gray-700">{product.name}</span>
                   </div>
                   <span className="text-sm font-medium text-gray-900">{product.percentage}%</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Traffic Source */}
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Traffic Source</h3>
-            <div className="space-y-4">
-              {trafficSources.map((source, index) => (
-                <div key={index} className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-700">{source.source}</span>
-                    <span className="text-sm font-medium text-gray-900">{source.percentage}%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div 
-                      className="bg-blue-600 h-2 rounded-full transition-all"
-                      style={{ width: `${source.percentage}%` }}
-                    ></div>
-                  </div>
                 </div>
               ))}
             </div>

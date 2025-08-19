@@ -69,7 +69,7 @@ const AdCampaigns: React.FC = () => {
             <button
               key={period}
               onClick={() => setTimeframe(period)}
-              className={`px-4 py-2 rounded-md text-sm font-medium capitalize transition-all hover:shadow-sm ${
+              className={`px-4 py-2 rounded-md text-sm font-medium capitalize transition-all duration-200 hover:shadow-sm ${
                 timeframe === period
                   ? 'bg-blue-600 text-white transform hover:scale-105'
                   : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200'
@@ -83,7 +83,7 @@ const AdCampaigns: React.FC = () => {
 
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md hover:scale-105">
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md hover:scale-105">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Ad Spend ({timeframe})</p>
@@ -95,7 +95,7 @@ const AdCampaigns: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md hover:scale-105">
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md hover:scale-105">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Generated Revenue</p>
@@ -107,7 +107,7 @@ const AdCampaigns: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-blue-600 p-6 rounded-xl shadow-sm transition-all hover:shadow-md hover:scale-105">
+        <div className="bg-blue-600 p-6 rounded-xl shadow-sm transition-all duration-200 hover:shadow-md hover:scale-105">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-100">ROAS</p>
@@ -120,7 +120,7 @@ const AdCampaigns: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md hover:scale-105">
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md hover:scale-105">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Net Profit</p>
@@ -135,19 +135,19 @@ const AdCampaigns: React.FC = () => {
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
         {/* Spend vs Revenue Chart */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md">
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md">
           <h3 className="text-lg font-semibold text-gray-900 mb-6">Ad Spend vs Revenue</h3>
           <div className="h-64 flex items-end justify-between gap-4">
             {chartData.map((item, index) => (
               <div key={index} className="flex-1 flex flex-col items-center gap-2">
                 <div className="w-full flex flex-col gap-1">
                   <div
-                    className="w-full bg-gradient-to-t from-red-500 to-red-400 rounded-t-lg transition-all hover:from-red-600 hover:to-red-500"
+                    className="w-full bg-gradient-to-t from-red-500 to-red-400 rounded-t-lg transition-all duration-200 hover:from-red-600 hover:to-red-500"
                     style={{ height: `${(item.spend / 4000) * 100}%`, minHeight: '20px' }}
                     title={`Spend: $${item.spend}`}
                   ></div>
                   <div
-                    className="w-full bg-gradient-to-t from-green-500 to-green-400 rounded-t-lg transition-all hover:from-green-600 hover:to-green-500"
+                    className="w-full bg-gradient-to-t from-green-500 to-green-400 rounded-t-lg transition-all duration-200 hover:from-green-600 hover:to-green-500"
                     style={{ height: `${(item.revenue / 10000) * 100}%`, minHeight: '20px' }}
                     title={`Revenue: $${item.revenue}`}
                   ></div>
@@ -169,11 +169,11 @@ const AdCampaigns: React.FC = () => {
         </div>
 
         {/* Campaign Performance */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md">
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md">
           <h3 className="text-lg font-semibold text-gray-900 mb-6">Active Campaigns</h3>
           <div className="space-y-4">
             {campaigns.map((campaign) => (
-              <div key={campaign.id} className="p-4 bg-gray-50 rounded-lg transition-all hover:bg-gray-100 hover:shadow-sm">
+              <div key={campaign.id} className="p-4 bg-gray-50 rounded-lg transition-all duration-200 hover:bg-gray-100 hover:shadow-sm">
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="font-semibold text-gray-900">{campaign.name}</h4>
                   <span className={`px-2 py-1 rounded-full text-xs font-medium ${
