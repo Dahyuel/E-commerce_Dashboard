@@ -44,27 +44,75 @@ const Sales: React.FC = () => {
   const topProducts = [
     {
       id: '1',
-      name: 'Wireless Headphones Pro',
-      image: '/images/headphones.jpg',
+      name: 'The Meadow Whisper Top',
+      sku: 'MWT-001',
+      image: '/The Meadow Whisper Top.png',
+      price: 910.00,
       profit: 2890,
       unitsSold: 156,
-      profitMargin: 45
+      profitMargin: 45,
+      totalStock: 145,
+      costs: {
+        components: [
+          { name: 'Fabric', cost: 45.50 },
+          { name: 'Thread', cost: 8.20 },
+          { name: 'Buttons', cost: 5.30 },
+          { name: 'Labor', cost: 25.00 }
+        ],
+        totalCost: 84.00
+      },
+      channels: {
+        website: { sold: 98 },
+        showroom: { sold: 58 }
+      }
     },
     {
       id: '2',
-      name: 'Smart Fitness Tracker',
-      image: '/images/fitness-tracker.jpg',
+      name: 'The Berry Whisper Top',
+      sku: 'BWT-002',
+      image: '/The Berry Whisper Top.png',
+      price: 910.00,
       profit: 2340,
       unitsSold: 234,
-      profitMargin: 38
+      profitMargin: 38,
+      totalStock: 12,
+      costs: {
+        components: [
+          { name: 'Fabric', cost: 48.00 },
+          { name: 'Thread', cost: 8.50 },
+          { name: 'Buttons', cost: 6.20 },
+          { name: 'Labor', cost: 25.00 }
+        ],
+        totalCost: 87.70
+      },
+      channels: {
+        website: { sold: 156 },
+        showroom: { sold: 78 }
+      }
     },
     {
       id: '3',
-      name: 'Bluetooth Speaker Mini',
-      image: '/images/speaker.jpg',
+      name: 'Long Sleve Beige Top',
+      sku: 'LSB-003',
+      image: '/Long Sleve Beige Top.jpg',
+      price: 390.00,
       profit: 1890,
       unitsSold: 189,
-      profitMargin: 42
+      profitMargin: 42,
+      totalStock: 67,
+      costs: {
+        components: [
+          { name: 'Fabric', cost: 22.80 },
+          { name: 'Thread', cost: 4.90 },
+          { name: 'Buttons', cost: 3.40 },
+          { name: 'Labor', cost: 15.00 }
+        ],
+        totalCost: 46.10
+      },
+      channels: {
+        website: { sold: 123 },
+        showroom: { sold: 66 }
+      }
     }
   ];
 
@@ -142,7 +190,7 @@ const Sales: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Total Sales</p>
-              <p className="text-2xl font-bold text-gray-900 mt-1">${currentData.totalSales.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-gray-900 mt-1">LE {currentData.totalSales.toLocaleString()}</p>
             </div>
             <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
               <DollarSign className="text-green-600" size={24} />
@@ -167,7 +215,7 @@ const Sales: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Net Profit</p>
-              <p className="text-2xl font-bold text-gray-900 mt-1">${currentData.netProfit.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-gray-900 mt-1">LE {currentData.netProfit.toLocaleString()}</p>
               <p className="text-sm text-gray-500 mt-1">After all costs</p>
             </div>
             <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
@@ -203,26 +251,66 @@ const Sales: React.FC = () => {
           <h3 className="text-lg font-semibold text-gray-900 mb-6">Top Profit Products</h3>
           <div className="space-y-4">
             {topProducts.map((product, index) => (
-              <div key={product.id} className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg transition-all hover:bg-gray-100 hover:shadow-sm">
-                <div className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center overflow-hidden">
-                  <img 
-                    src={product.image} 
-                    alt={product.name}
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                      target.nextElementSibling!.textContent = `P${index + 1}`;
-                    }}
-                  />
-                  <span className="text-gray-600 font-medium hidden">P{index + 1}</span>
-                </div>
-                <div className="flex-1">
-                  <h4 className="font-medium text-gray-900 text-sm">{product.name}</h4>
-                  <p className="text-xs text-gray-600">{product.unitsSold} units sold</p>
-                  <div className="flex items-center justify-between mt-1">
-                    <span className="text-sm font-bold text-green-600">${product.profit}</span>
-                    <span className="text-xs text-gray-500">{product.profitMargin}% margin</span>
+              <div key={product.id} className="p-4 bg-gray-50 rounded-lg transition-all hover:bg-gray-100 hover:shadow-sm">
+                <div className="flex items-start gap-4">
+                  <div className="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
+                    <img 
+                      src={product.image} 
+                      alt={product.name}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        target.nextElementSibling!.textContent = `P${index + 1}`;
+                      }}
+                    />
+                    <span className="text-gray-600 font-medium hidden">P{index + 1}</span>
+                  </div>
+                  
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-medium text-gray-900 text-sm mb-1 truncate">{product.name}</h4>
+                    <p className="text-xs text-gray-500 mb-2">SKU: {product.sku}</p>
+                    
+                    <div className="grid grid-cols-2 gap-2 text-xs">
+                      <div>
+                        <span className="text-gray-600">Price:</span>
+                        <span className="font-medium text-gray-900 ml-1">LE {product.price.toFixed(0)}</span>
+                      </div>
+                      <div>
+                        <span className="text-gray-600">Cost:</span>
+                        <span className="font-medium text-gray-900 ml-1">LE {product.costs.totalCost.toFixed(0)}</span>
+                      </div>
+                      <div>
+                        <span className="text-gray-600">Units Sold:</span>
+                        <span className="font-medium text-gray-900 ml-1">{product.unitsSold}</span>
+                      </div>
+                      <div>
+                        <span className="text-gray-600">Stock:</span>
+                        <span className={`font-medium ml-1 ${product.totalStock <= 20 ? 'text-red-600' : 'text-gray-900'}`}>
+                          {product.totalStock}
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between mt-3 pt-2 border-t border-gray-200">
+                      <div>
+                        <span className="text-sm font-bold text-green-600">LE {product.profit}</span>
+                        <span className="text-xs text-gray-500 ml-1">profit</span>
+                      </div>
+                      <span className="text-xs text-gray-500">{product.profitMargin}% margin</span>
+                    </div>
+                    
+                    {/* Channel breakdown */}
+                    <div className="flex gap-2 mt-2">
+                      <div className="flex-1 text-center p-1 bg-blue-50 rounded text-xs">
+                        <div className="text-blue-700 font-medium">{product.channels.website.sold}</div>
+                        <div className="text-blue-600">Website</div>
+                      </div>
+                      <div className="flex-1 text-center p-1 bg-purple-50 rounded text-xs">
+                        <div className="text-purple-700 font-medium">{product.channels.showroom.sold}</div>
+                        <div className="text-purple-600">Showroom</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -240,7 +328,7 @@ const Sales: React.FC = () => {
               <div key={index} className="p-4 bg-gray-50 rounded-lg transition-all hover:bg-gray-100">
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-medium text-gray-900">{segment.segment}</span>
-                  <span className="text-lg font-bold text-green-600">${segment.value}</span>
+                  <span className="text-lg font-bold text-green-600">LE {segment.value}</span>
                 </div>
                 <div className="flex items-center justify-between text-sm text-gray-600">
                   <span>{segment.count} customers</span>
@@ -267,12 +355,12 @@ const Sales: React.FC = () => {
                   <div
                     className="w-full bg-gradient-to-t from-green-500 to-green-400 rounded-t-lg transition-all hover:from-green-600 hover:to-green-500"
                     style={{ height: `${(item.grossSales / 20000) * 100}%`, minHeight: '20px' }}
-                    title={`Gross Sales: $${item.grossSales}`}
+                    title={`Gross Sales: LE ${item.grossSales}`}
                   ></div>
                   <div
                     className="w-full bg-gradient-to-t from-red-500 to-red-400 transition-all hover:from-red-600 hover:to-red-500"
                     style={{ height: `${(item.refunds / 1000) * 20}%`, minHeight: '8px' }}
-                    title={`Refunds: $${item.refunds}`}
+                    title={`Refunds: LE ${item.refunds}`}
                   ></div>
                 </div>
                 <span className="text-xs text-gray-600">{item.period}</span>
@@ -322,14 +410,14 @@ const Sales: React.FC = () => {
                       key={index}
                       d={pathData}
                       className={`${category.color.replace('bg-', 'fill-')} transition-all hover:opacity-80`}
-                      title={`${category.category}: $${category.amount}`}
+                      title={`${category.category}: LE ${category.amount}`}
                     />
                   );
                 })}
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
-                  <div className="text-lg font-bold text-gray-900">${currentData.costs.toLocaleString()}</div>
+                  <div className="text-lg font-bold text-gray-900">LE {currentData.costs.toLocaleString()}</div>
                   <div className="text-xs text-gray-600">Total Costs</div>
                 </div>
               </div>
@@ -345,7 +433,7 @@ const Sales: React.FC = () => {
                   <span className="font-medium text-gray-900">{category.category}</span>
                 </div>
                 <div className="text-right">
-                  <div className="font-bold text-gray-900">${category.amount.toLocaleString()}</div>
+                  <div className="font-bold text-gray-900">LE {category.amount.toLocaleString()}</div>
                   <div className="text-sm text-gray-600">{category.percentage}%</div>
                 </div>
               </div>
