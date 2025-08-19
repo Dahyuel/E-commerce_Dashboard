@@ -33,7 +33,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
     <div className="w-64 bg-gray-900 text-white min-h-screen flex flex-col">
       {/* Logo */}
       <div className="p-6 border-b border-gray-800">
-        <h1 className="text-xl font-bold text-white">LOGO</h1>
+        <h1 className="text-xl font-bold text-white">E-Commerce</h1>
       </div>
 
       {/* Navigation */}
